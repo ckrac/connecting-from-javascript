@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/ckrac/connecting-from-javascript#readme",
   "dependencies": {
+    "knex": "^0.14.2",
     "pg": "^7.4.1"
   }
 }
