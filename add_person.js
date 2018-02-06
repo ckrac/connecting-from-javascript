@@ -11,20 +11,16 @@ const knex = require('knex')({
   }
 });
 
-const name = process.argv[2];
+const firstName = process.argv[2];
+const lastName = process.argv[3];
+const birthdate = process.argv[4];
 
-knex.select('*').from('famous_people')
-.where('first_name', `${name}`)
-.orWhere('last_name', `${name}`)
+knex('famous_people')
+.insert({first_name: `${firstName}`, last_name: `${lastName}`, birthdate: `${birthdate}`})
+// .returning(['first_name'])
 .asCallback(function(err, rows) {
 
-  console.log(`node lookup_people.js ${name}`);
-  console.log("Searching ...");
-
   if (err) return console.error(err);
-  console.log(`Found ${rows.length} by the name '${name}':`);
-  console.log(rows);
+  console.log(`Inserted ${firstName} ${lastName} to famous_people`);
   process.exit();
 });
-// .disconnect();
-
